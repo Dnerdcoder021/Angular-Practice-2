@@ -1,0 +1,64 @@
+<div class="medical-checkup-form">
+    <h2>Medical Checkup Form</h2>
+    <form [formGroup]="medicalForm">
+    <div class="form-group">
+        <label for="name" class="asterisk">Name</label>
+        <input type="text" id="name" formControlName="name" placeholder="Enter Your Name">
+        <div class="error-message" *ngIf="medicalForm.get('name').hasError('required') && medicalForm.get('name').touched ">
+            Name is Required.
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="age" class="asterisk">Age</label>
+        <input type="number" id="age" formControlName="age" placeholder="Enter Your Age">
+        <div class="error-message" *ngIf="medicalForm.get('age').hasError('required') && medicalForm.get('age').touched ">
+            Age is Required.
+        </div>
+        <div class="error-message" *ngIf="medicalForm.get('age').hasError('min') && medicalForm.get('age').touched ">
+            Age must be greater than 1.
+        </div>
+        <div class="error-message" *ngIf="medicalForm.get('age').hasError('max') && medicalForm.get('age').touched ">
+            Age must be less than or equal to 100.
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="gender" class="asterisk">Gender</label>
+        <input type="text" id="gender" formControlName="gender" placeholder="Enter Your Gender">
+        <div class="error-message" *ngIf="medicalForm.get('gender').hasError('required') && medicalForm.get('gender').touched ">
+            Gender is Required.
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="contact" class="asterisk">Contact</label>
+        <input type="text" id="contact" formControlName="contact" placeholder="Enter Your Number">
+        <div class="error-message" *ngIf="medicalForm.get('contact').hasError('required') && medicalForm.get('contact').touched ">
+            Number is Required.
+        </div>
+        <!-- <div class="error-message" *ngIf="medicalForm.get('contact').hasError('max') && medicalForm.get('contact').touched ">
+            Number is Required.
+        </div> -->
+    </div>
+    <div class="form-group">
+        <label for="email" class="asterisk">Email</label>
+        <input type="email" id="email" formControlName="email" placeholder="Enter Your Email">
+        <div class="error-message" *ngIf="medicalForm.get('email').hasError('required') && medicalForm.get('email').touched ">
+            Email is Required.
+        </div>
+        <div class="error-message" *ngIf="medicalForm.get('email').hasError('email') && medicalForm.get('email').touched ">
+            Enter a valid Email.
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="painscore" >Pain Score</label>
+        <select id="painscore" formControlName="painscore" placeholder="select your painscore">
+            <option value="" disabled selected >Select Painscore</option>
+             <option value="0">0-No pain</option>
+             <option value="5">5-moderate</option>
+             <option value="10">10 - high</option>
+        </select>
+    </div>
+    <!-- <button type="submit" [disabled]="medicalForm.invalid" (click)="submitForm()">Submit</button> -->
+     <button type="submit" (click)="handleSubmit($event)">Submit</button>
+</form>
+</div>
